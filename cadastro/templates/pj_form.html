@@ -1,0 +1,24 @@
+<!-- pf_form.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Cadastro de Pessoa Jurídica{% endblock %}
+
+{% block content %}
+  <div class="container mt-4">
+    {% if pessoa_juridica %}
+      <h2>Editar Pessoa Jurídica</h2>
+    {% else %}
+      <h2>Adicionar Nova Pessoa Jurídica</h2>
+    {% endif %}
+
+    <form method="post" action="{% if pessoa_juridica %}{% url 'update_pessoa_juridica' id=pessoa_juridica.id %}{% else %}{% url 'novo_pessoa_juridica' %}{% endif %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <button type="submit" class="btn btn-primary mt-3">Salvar</button>
+    </form>
+
+    <a href="{% url 'lista_pessoa_fisica' %}" class="btn btn-secondary mt-3">Voltar para Lista</a>
+  </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Cadastro de Pessoa Física{% endblock %}
+
+{% block content %}
+  <div class="container mt-4">
+    {% if pessoa_fisica %}
+      <h2>Editar Pessoa Física</h2>
+    {% else %}
+      <h2>Adicionar Nova Pessoa Física</h2>
+    {% endif %}
+
+    <form method="post" action="{% if pessoa_fisica %}{% url 'update_pessoa_fisica' id=pessoa_fisica.id %}{% else %}{% url 'novo_pessoa_fisica' %}{% endif %}">
+        {% csrf_token %}
+        <p>
+        <label for="nome">Nome:</label>
+        <input class="form-control" type="text" name="nome" id="nome" value="{{ pessoa_fisica.nome }}">
+        </p>
+        <p>
+        <label for="email">Email:</label>
+        <input class="form-control" type="email" name="email" id="email" value="{{ pessoa_fisica.email }}">
+        </p>
+        <p>
+        <label for="cpf">CPF:</label>
+        <input class="form-control" type="text" name="cpf" id="cpf" value="{{ pessoa_fisica.cpf }}">
+        </p>
+        <p>
+        <label for="data_nascimento">Data de Nascimento:</label>
+        <input class="form-control" type="date" name="data_nascimento" id="data_nascimento" value="{{ pessoa_fisica.data_nascimento|date:'Y-m-d' }}">
+        </p>
+        <button class="btn btn-primary" type="submit">{% if pessoa_fisica %}Atualizar{% else %}Salvar{% endif %}</button>
+    </form>
+
+    <a href="{% url 'lista_pessoa_fisica' %}" class="btn btn-secondary mt-3">Voltar para Lista</a>
+  </div>
+{% endblock %}

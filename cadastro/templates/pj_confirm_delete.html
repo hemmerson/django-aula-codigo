@@ -1,0 +1,18 @@
+<!-- pf_confirm_delete.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Deletar Pessoa Jurídica{% endblock %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h2>Confirmar Exclusão</h2>
+    <p>Você está prestes a excluir a pessoa jurídica: <strong>{{ pessoa_juridica.nome }}</strong>. Tem certeza?</p>
+
+    <form method="post" action="{% url 'delete_pessoa_juridica' id=pessoa_juridica.id %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+      <a href="{% url 'lista_pessoa_juridica' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+  </div>
+{% endblock %}

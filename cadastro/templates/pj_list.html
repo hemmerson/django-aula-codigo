@@ -1,0 +1,42 @@
+<!-- pessoa_fisica_list.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Lista de Pessoa Jurídica{% endblock %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h2>Lista de Pessoas Jurídicas</h2>
+
+    <div class="mt-4 mb-2">
+      <a class="btn btn-primary" href="{% url 'novo_pessoa_juridica' %}">Novo</a>
+    </div>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>CNPJ</th>
+          <th>Razão Social</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for pessoa_juridica in listapessoajuridica %}
+          <tr>
+            <td>{{ pessoa_juridica.nome }}</td>
+            <td>{{ pessoa_juridica.email }}</td>
+            <td>{{ pessoa_juridica.cnpj }}</td>
+            <td>{{ pessoa_juridica.razao_social }}</td>
+            <td>
+              <a href="{% url 'update_pessoa_juridica' id=pessoa_juridica.id %}" class="btn btn-primary btn-sm">Editar</a>
+              <a href="{% url 'delete_pessoa_juridica' id=pessoa_juridica.id %}" class="btn btn-danger btn-sm">Excluir</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+{% endblock %}

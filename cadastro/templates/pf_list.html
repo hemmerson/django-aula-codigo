@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Pessoa Fisica{% endblock %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h2>Lista de Pessoas Físicas</h2>
+    <div class="mt-4 mb-2">
+      <a class="btn btn-primary" href="{% url 'novo_form_pessoa_fisica' %}">Novo</a>
+    </div>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>CPF</th>
+          <th>Data de Nascimento</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for pessoa_fisica in listapessoafisica %}
+          <tr>
+            <td>{{ pessoa_fisica.nome }}</td>
+            <td>{{ pessoa_fisica.email }}</td>
+            <td>{{ pessoa_fisica.cpf }}</td>
+            <td>{{ pessoa_fisica.data_nascimento }}</td>
+            <td>
+              <a href="{% url 'editar_pessoa_fisica' id=pessoa_fisica.id %}" class="btn btn-primary btn-sm">Editar</a>
+              <a href="{% url 'delete_pessoa_fisica' id=pessoa_fisica.id %}" class="btn btn-danger btn-sm">Excluir</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+{% endblock %}
