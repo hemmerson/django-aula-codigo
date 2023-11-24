@@ -77,8 +77,18 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / "db.sqlite3",
     }
+
+#  Precisa da instalação do pacote : psycopg2 e psycopg2-binary    
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'cadastro',
+#        'USER': 'postgres',
+#        'PASSWORD': 'admin',
+#        'HOST': 'localhost',
+#        'PORT': '5432',
+#    }
 }
 
 
